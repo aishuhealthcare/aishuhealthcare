@@ -358,15 +358,18 @@
                 </div>
             </div>
             
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#home">About Doctor</a></li>
-                    <li><a href="#contact">Contact Us</a></li>
-                </ul>
-            </div>
+		<!-- Replace the Quick Links section in footer -->
+		<div class="footer-links">
+			<h3 class="footer-toggle">Quick Links 
+				<i class="fas fa-chevron-down footer-arrow"></i>
+			</h3>
+			<ul class="footer-links-content">
+				<li><a href="#home">Home</a></li>
+				<li><a href="#services">Services</a></li>
+				<li><a href="#home">About Doctor</a></li>
+				<li><a href="#contact">Contact Us</a></li>
+			</ul>
+		</div>
             
             <div class="footer-hours">
                 <h3>Clinic Hours</h3>
@@ -390,6 +393,32 @@
     </footer>
 
 	<script>
+		// Footer quick links toggle
+		const footerToggle = document.querySelector('.footer-links h3');
+		
+		footerToggle.addEventListener('click', () => {
+			document.querySelector('.footer-links').classList.toggle('active');
+		});
+
+		// Mobile menu toggle functionality (existing code)
+		const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+		const mainNav = document.getElementById('mainNav');
+
+		mobileMenuBtn.addEventListener('click', () => {
+			mainNav.classList.toggle('active');
+		});
+
+		// Close menu when clicking outside
+		document.addEventListener('click', (event) => {
+			if (!mainNav.contains(event.target) && !mobileMenuBtn.contains(event.target)) {
+				mainNav.classList.remove('active');
+			}
+			
+			// Close footer menu if clicking elsewhere
+			if (!event.target.closest('.footer-links')) {
+				document.querySelector('.footer-links').classList.remove('active');
+			}
+		});
 		// Define groups of images for each dynamic slot
 		const imageGroups = {
 			'gallery-image-1': [
